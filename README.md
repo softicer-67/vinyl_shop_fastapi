@@ -9,6 +9,7 @@ cd vinyl_shop_fastapi
 ```
 pip install -r requirements.txt
 ```
+>#####  rename .env_example to .env
 >#####  Start Docker Desktop
 ```
 docker-compose up --build
