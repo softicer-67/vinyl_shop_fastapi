@@ -9,7 +9,7 @@ cd vinyl_shop_fastapi
 ```
 pip install -r requirements.txt
 ```
-start Docker Desktop
+>#####  Start Docker Desktop
 ```
 docker-compose up --build
 ```
