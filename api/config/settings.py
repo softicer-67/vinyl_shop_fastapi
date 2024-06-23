@@ -1,22 +1,24 @@
-import os
+from pydantic_settings import BaseSettings
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
-from dotenv import load_dotenv
 
 
-load_dotenv('.env')
+class Settings(BaseSettings):
+    POSTGRES_USER: str
+    POSTGRES_DB: str
+    POSTGRES_PASSWORD: str
 
-DB = os.getenv('POSTGRES_DB')
-PASSWORD = os.getenv('POSTGRES_PASSWORD')
-USER = os.getenv('POSTGRES_USER')
+
+info = Settings()
 
 # строка подключения
-bd_url = f'postgresql+asyncpg://{USER}:{PASSWORD}@data_base:5432/{DB}'
+bd_url = f'postgresql+asyncpg://{info.POSTGRES_USER}:{info.POSTGRES_PASSWORD}@data_base:5432/{info.POSTGRES_DB}'
 
 # создаем движок SqlAlchemy
-engine = create_async_engine(bd_url, pool_pre_ping=True)
+engine = create_async_engine(bd_url)  # , pool_pre_ping=True)
 
-#создаем базовый класс для моделей
+
+# создаем базовый класс для моделей
 class Base(DeclarativeBase):
     pass
 
