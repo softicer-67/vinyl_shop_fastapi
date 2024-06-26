@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 info = Settings()
 
 # строка подключения
-bd_url = f'postgresql+asyncpg://{info.POSTGRES_USER}:{info.POSTGRES_PASSWORD}@data_base:5432/{info.POSTGRES_DB}'
+bd_url = f'postgresql+asyncpg://{info.POSTGRES_USER}:{info.POSTGRES_PASSWORD}@localhost:5432/{info.POSTGRES_DB}'
 
 # создаем движок SqlAlchemy
 engine = create_async_engine(bd_url)  # , pool_pre_ping=True)
